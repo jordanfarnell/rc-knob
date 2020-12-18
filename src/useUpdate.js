@@ -82,7 +82,7 @@ export default ({
             max,
             angleOffset,
             angleRange,
-            percentage: initialValue ? (max - min) / initialValue : 0,
+            percentage: initialValue ? initialValue / (max - min) : 0,
             value: initialValue || 0,
             svg,
             container,
