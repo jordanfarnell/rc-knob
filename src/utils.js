@@ -45,7 +45,7 @@ export const getStartXY = ({ svg, size }) => {
         startX: svg.current.getBoundingClientRect().left + size / 2,
         startY:
             svg.current.getBoundingClientRect().top +
-            document.documentBody.scrollTop +
+            document.documentElement.scrollTop +
             size / 2
     };
     return {
