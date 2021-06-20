@@ -173,7 +173,7 @@ var getStartXY = function getStartXY(_ref4) {
       size = _ref4.size;
   return {
     startX: svg.current.getBoundingClientRect().left + size / 2,
-    startY: svg.current.getBoundingClientRect().top + size / 2
+    startY: svg.current.getBoundingClientRect().top - document.body.scrollTop + size / 2
   };
   return {
     startX: Math.floor(svg.current.offsetLeft) + size / 2,
