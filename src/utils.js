@@ -44,8 +44,8 @@ export const getStartXY = ({ ref, size }) => {
     console.log(ref.current.x);
     console.log(size / 2);
     return {
-        startX: ref.current.x + size,
-        startY: ref.current.y + size
+        startX: ref.current.x,
+        startY: ref.current.y
     };
     return {
         startX: Math.floor(svg.current.offsetLeft) + size / 2,
