@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useUpdate from "./useUpdate";
 import { Arc } from "./Arc";
 import { Pointer } from "./Pointer";
@@ -29,6 +29,7 @@ export const Knob = ({
     className,
     disabled = false
 }) => {
+    const [pageXY, setPageXY] = useState({ x: 0, y: 0 });
     const { percentage, value, onStart, svg, container, onKeyDown, onScroll } =
         useUpdate({
             min,
@@ -38,8 +39,18 @@ export const Knob = ({
             angleRange,
             size,
             steps: stepsToSnapTo(steps, snap),
-            onChange
+            onChange,
+            pageXY
         });
+
+    useEffect(() => {
+        const onMouseMove = ({ pageX, pageY }) =>
+            setPageXY({ x: pageX, y: pageY });
+        document.body.addEventListener("mousemove", onMouseMove);
+        return () => {
+            document.body.removeEventListener("mousemove", onMouseMove);
+        };
+    }, []);
 
     return (
         // <div
