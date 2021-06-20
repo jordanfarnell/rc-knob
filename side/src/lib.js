@@ -165,6 +165,8 @@ var getPercentageFromValue = function getPercentageFromValue(_ref3) {
 var getStartXY = function getStartXY(_ref4) {
   var pageXY = _ref4.pageXY,
       size = _ref4.size;
+  console.log(pageXY.x);
+  console.log(size / 2);
   return {
     startX: pageXY.x + size / 2,
     startY: pageXY.y + size / 2
