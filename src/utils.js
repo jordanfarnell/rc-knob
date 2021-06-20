@@ -40,12 +40,12 @@ export const getValueFromPercentage = ({ min, max, percentage }) =>
 export const getPercentageFromValue = ({ min, max, value }) =>
     (value - min) / (max - min);
 
-export const getStartXY = ({ pageXY, size }) => {
+export const getStartXY = ({ ref, size }) => {
     console.log(pageXY.x);
     console.log(size / 2);
     return {
-        startX: pageXY.x + size / 2,
-        startY: pageXY.y + size / 2
+        startX: ref.current.x + size / 2,
+        startY: ref.current.y + size / 2
     };
     return {
         startX: Math.floor(svg.current.offsetLeft) + size / 2,
