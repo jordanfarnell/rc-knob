@@ -16,7 +16,7 @@ const isInternalComponent = ({ type }) =>
 class XY {
     constructor(x, y) {
         this.x = x;
-        thix.y = y;
+        this.y = y;
     }
 }
 
