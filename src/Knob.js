@@ -21,6 +21,8 @@ class XY {
 }
 
 export const Knob = ({
+    x,
+    y,
     min,
     max,
     value: initialValue,
@@ -82,6 +84,8 @@ export const Knob = ({
             onMouseDown={(e) => (disabled ? undefined : onStart(e))}
             width={size}
             height={size}
+            x={x}
+            y={y}
             ref={svg}
             className={className}
             aria-valuemax={max}
