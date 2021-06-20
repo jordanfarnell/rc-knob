@@ -172,7 +172,7 @@ var getStartXY = function getStartXY(_ref4) {
   var ref = _ref4.ref,
       size = _ref4.size;
   return {
-    startX: ref.current.x - size / 2,
+    startX: ref.current.x - size / 4,
     startY: ref.current.y
   };
   return {
