@@ -168,6 +168,10 @@ var getStartXY = function getStartXY(_ref4) {
   console.log(svg.current.offsetLeft) + size / 2;
   console.log(svg.current.offsetTop) + size / 2;
   return {
+    startX: size / 2,
+    startY: size / 2
+  };
+  return {
     startX: Math.floor(svg.current.offsetLeft) + size / 2,
     startY: Math.floor(svg.current.offsetTop) + size / 2
   };
