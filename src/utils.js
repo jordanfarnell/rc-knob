@@ -41,10 +41,8 @@ export const getPercentageFromValue = ({ min, max, value }) =>
     (value - min) / (max - min);
 
 export const getStartXY = ({ ref, size }) => {
-    console.log(ref.current.x);
-    console.log(size / 2);
     return {
-        startX: ref.current.x,
+        startX: ref.current.x - size / 2,
         startY: ref.current.y
     };
     return {
