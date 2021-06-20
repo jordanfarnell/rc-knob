@@ -66,6 +66,9 @@ export const Knob = ({
             aria-valuenow={value}
             onKeyDown={onKeyDown}
             onWheel={onScroll}
+            style={{
+                display: "block"
+            }}
         >
             {React.Children.map(children, (child) =>
                 isInternalComponent(child)
