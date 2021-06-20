@@ -61,6 +61,11 @@ export const Knob = ({
             height={size}
             ref={svg}
             className={className}
+            aria-valuemax={max}
+            aria-valuemin={min}
+            aria-valuenow={value}
+            onKeyDown={onKeyDown}
+            onWheel={onScroll}
         >
             {React.Children.map(children, (child) =>
                 isInternalComponent(child)

@@ -644,7 +644,9 @@ var Knob = function Knob(_ref2) {
       percentage = _useUpdate.percentage,
       value = _useUpdate.value,
       onStart = _useUpdate.onStart,
-      svg = _useUpdate.svg;
+      svg = _useUpdate.svg,
+      onKeyDown = _useUpdate.onKeyDown,
+      onScroll = _useUpdate.onScroll;
 
   return (// <div
     //     ref={container}
@@ -666,7 +668,12 @@ var Knob = function Knob(_ref2) {
       width: size,
       height: size,
       ref: svg,
-      className: className
+      className: className,
+      "aria-valuemax": max,
+      "aria-valuemin": min,
+      "aria-valuenow": value,
+      onKeyDown: onKeyDown,
+      onWheel: onScroll
     }, React__default.Children.map(children, function (child) {
       return isInternalComponent(child) ? React__default.cloneElement(child, _objectSpread({
         percentage: percentage,
