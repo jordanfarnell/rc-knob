@@ -38,8 +38,6 @@ export const Knob = ({
     className,
     disabled = false
 }) => {
-    const [pageXY, setPageXY] = useState({ x: 0, y: 0 });
-    const ref = useRef(new XY());
     const { percentage, value, onStart, svg, onKeyDown, onScroll } = useUpdate({
         min,
         max,
@@ -48,23 +46,8 @@ export const Knob = ({
         angleRange,
         size,
         steps: stepsToSnapTo(steps, snap),
-        onChange,
-        ref
+        onChange
     });
-
-    useEffect(() => {
-        const onMouseMove = ({ pageX, pageY }) => {
-            setPageXY({ x: pageX, y: pageY });
-            if (ref.current) {
-                ref.current.x = pageX;
-                ref.current.y = pageY;
-            }
-        };
-        document.body.addEventListener("mousemove", onMouseMove);
-        return () => {
-            document.body.removeEventListener("mousemove", onMouseMove);
-        };
-    }, []);
 
     return (
         // <div

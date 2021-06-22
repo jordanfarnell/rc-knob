@@ -70,8 +70,7 @@ export default ({
     size,
     steps,
     snap,
-    onChange,
-    ref
+    onChange
 }) => {
     const svg = useRef();
     // const container = useRef();
@@ -87,8 +86,7 @@ export default ({
             value: initialValue || 0,
             svg,
             // container,
-            size,
-            ref
+            size
         }
     );
 
