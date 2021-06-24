@@ -37,7 +37,7 @@ export const onScroll = (dispatch) => (e) => {
 
 const addEventToBody = (name, fn) => document.body.addEventListener(name, fn);
 const addNonPassiveEventToBody = (name, fn) =>
-    document.body.addEventListener(name, fn, { passive: false });
+    document.body.addEventListener(name, fn);
 const removeEventFromBody = (name, fn) =>
     document.body.removeEventListener(name, fn);
 
@@ -48,6 +48,7 @@ export const handleEventListener =
             dispatch({ pageX, pageY, type: "MOVE" });
         const onStop = () => dispatch({ type: "STOP" });
         const onTouchStart = (e) => {
+            e.preventDefault();
             dispatch({
                 type: "MOVE",
                 pageX: e.changedTouches[0].pageX,
