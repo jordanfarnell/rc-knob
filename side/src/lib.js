@@ -242,25 +242,24 @@ var handleEventListener = function handleEventListener(_ref) {
       });
     };
 
+    var onTouchStart = function onTouchStart(_ref3) {
+      var changedTouches = _ref3.changedTouches;
+      return dispatch({
+        type: "MOVE",
+        pageX: changedTouches[0].pageX,
+        pageY: changedTouches[0].pageY
+      });
+    };
+
     if (isActive) {
       addEventToBody("mousemove", onMove);
       addEventToBody("mouseup", onStop);
-      addEventToBody("touchstart", function (e) {
-        return onMove({
-          pageX: e.changedTouches[0].pageX,
-          pageY: e.changedTouches[0].pageY
-        });
-      });
+      addEventToBody("touchstart", onTouchStart);
       addEventToBody("touchend", onStop);
       return function () {
         removeEventFromBody("mousemove", onMove);
         removeEventFromBody("mouseup", onStop);
-        removeEventFromBody("touchstart", function (e) {
-          return onMove({
-            pageX: e.changedTouches[0].pageX,
-            pageY: e.changedTouches[0].pageY
-          });
-        });
+        removeEventFromBody("touchstart", onTouchStart);
         removeEventFromBody("touchend", onStop);
       };
     }
