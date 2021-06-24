@@ -37,7 +37,7 @@ export const onScroll = (dispatch) => (e) => {
 
 const addEventToBody = (name, fn) => document.body.addEventListener(name, fn);
 const addNonPassiveEventToBody = (name, fn) =>
-    document.body.addEventListener(name, fn);
+    document.body.addEventListener(name, fn, { passive: false });
 const removeEventFromBody = (name, fn) =>
     document.body.removeEventListener(name, fn);
 
