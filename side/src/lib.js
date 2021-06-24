@@ -228,6 +228,12 @@ var removeEventFromBody = function removeEventFromBody(name, fn) {
   return document.body.removeEventListener(name, fn);
 };
 
+var removeNonPassiveEventFromBody = function removeNonPassiveEventFromBody(name, fn) {
+  return document.body.removeEventListener(name, fn, {
+    passive: false
+  });
+};
+
 var handleEventListener = function handleEventListener(_ref) {
   var dispatch = _ref.dispatch,
       isActive = _ref.isActive;
@@ -243,8 +249,7 @@ var handleEventListener = function handleEventListener(_ref) {
     };
 
     var onStop = function onStop() {
-      console.log("pogger");
-      dispatch({
+      return dispatch({
         type: "STOP"
       });
     };
@@ -266,7 +271,7 @@ var handleEventListener = function handleEventListener(_ref) {
       return function () {
         removeEventFromBody("mousemove", onMove);
         removeEventFromBody("mouseup", onStop);
-        addNonPassiveEventToBody("touchmove", onTouchStart);
+        removeNonPassiveEventFromBody("touchmove", onTouchStart);
         removeEventFromBody("touchend", onStop);
       };
     }

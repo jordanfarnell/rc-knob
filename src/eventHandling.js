@@ -40,16 +40,15 @@ const addNonPassiveEventToBody = (name, fn) =>
     document.body.addEventListener(name, fn, { passive: false });
 const removeEventFromBody = (name, fn) =>
     document.body.removeEventListener(name, fn);
+const removeNonPassiveEventFromBody = (name, fn) =>
+    document.body.removeEventListener(name, fn, { passive: false });
 
 export const handleEventListener =
     ({ dispatch, isActive }) =>
     () => {
         const onMove = ({ pageX, pageY }) =>
             dispatch({ pageX, pageY, type: "MOVE" });
-        const onStop = () => {
-            console.log("pogger");
-            dispatch({ type: "STOP" });
-        };
+        const onStop = () => dispatch({ type: "STOP" });
         const onTouchStart = (e) => {
             e.preventDefault();
             dispatch({
@@ -66,7 +65,7 @@ export const handleEventListener =
             return () => {
                 removeEventFromBody("mousemove", onMove);
                 removeEventFromBody("mouseup", onStop);
-                addNonPassiveEventToBody("touchmove", onTouchStart);
+                removeNonPassiveEventFromBody("touchmove", onTouchStart);
                 removeEventFromBody("touchend", onStop);
             };
         }
