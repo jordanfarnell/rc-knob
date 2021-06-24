@@ -48,7 +48,7 @@ export const handleEventListener =
         if (isActive) {
             addEventToBody("mousemove", onMove);
             addEventToBody("mouseup", onStop);
-            addEventToBody("touchstart", onMove);
+            addEventToBody("touchstart", console.log);
             addEventToBody("touchend", onStop);
             return () => {
                 removeEventFromBody("mousemove", onMove);
