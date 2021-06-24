@@ -45,21 +45,22 @@ export const handleEventListener =
         const onMove = ({ pageX, pageY }) =>
             dispatch({ pageX, pageY, type: "MOVE" });
         const onStop = () => dispatch({ type: "STOP" });
-        const onTouchStart = ({ changedTouches }) =>
+        const onTouchStart = ({ changedTouches }) => {
             dispatch({
                 type: "MOVE",
                 pageX: changedTouches[0].pageX,
                 pageY: changedTouches[0].pageY
             });
+        };
         if (isActive) {
             addEventToBody("mousemove", onMove);
             addEventToBody("mouseup", onStop);
-            addEventToBody("touchstart", onTouchStart);
+            addEventToBody("touchmove", onTouchStart);
             addEventToBody("touchend", onStop);
             return () => {
                 removeEventFromBody("mousemove", onMove);
                 removeEventFromBody("mouseup", onStop);
-                removeEventFromBody("touchstart", onTouchStart);
+                removeEventFromBody("touchmove", onTouchStart);
                 removeEventFromBody("touchend", onStop);
             };
         }

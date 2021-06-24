@@ -244,7 +244,7 @@ var handleEventListener = function handleEventListener(_ref) {
 
     var onTouchStart = function onTouchStart(_ref3) {
       var changedTouches = _ref3.changedTouches;
-      return dispatch({
+      dispatch({
         type: "MOVE",
         pageX: changedTouches[0].pageX,
         pageY: changedTouches[0].pageY
@@ -254,12 +254,12 @@ var handleEventListener = function handleEventListener(_ref) {
     if (isActive) {
       addEventToBody("mousemove", onMove);
       addEventToBody("mouseup", onStop);
-      addEventToBody("touchstart", onTouchStart);
+      addEventToBody("touchmove", onTouchStart);
       addEventToBody("touchend", onStop);
       return function () {
         removeEventFromBody("mousemove", onMove);
         removeEventFromBody("mouseup", onStop);
-        removeEventFromBody("touchstart", onTouchStart);
+        removeEventFromBody("touchmove", onTouchStart);
         removeEventFromBody("touchend", onStop);
       };
     }

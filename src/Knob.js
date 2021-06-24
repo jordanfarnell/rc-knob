@@ -65,6 +65,7 @@ export const Knob = ({
         // >
         <svg
             onMouseDown={(e) => (disabled ? undefined : onStart(e))}
+            onTouchStart={(e) => (disabled ? undefined : onStart(e))}
             width={size}
             height={size}
             x={x}
