@@ -244,7 +244,6 @@ var handleEventListener = function handleEventListener(_ref) {
 
     var onTouchStart = function onTouchStart(_ref3) {
       var changedTouches = _ref3.changedTouches;
-      console.log(changedTouches[0]);
       dispatch({
         type: "MOVE",
         pageX: changedTouches[0].pageX,
@@ -684,7 +683,8 @@ var Knob = function Knob(_ref2) {
         return disabled ? undefined : onStart(e);
       },
       onTouchStart: function onTouchStart(e) {
-        return disabled ? undefined : onStart(e);
+        e.stopPropagation();
+        if (!disabled) onStart(e);
       },
       width: size,
       height: size,

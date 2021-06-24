@@ -46,7 +46,6 @@ export const handleEventListener =
             dispatch({ pageX, pageY, type: "MOVE" });
         const onStop = () => dispatch({ type: "STOP" });
         const onTouchStart = ({ changedTouches }) => {
-            console.log(changedTouches[0]);
             dispatch({
                 type: "MOVE",
                 pageX: changedTouches[0].pageX,
