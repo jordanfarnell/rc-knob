@@ -49,10 +49,12 @@ export const handleEventListener =
             addEventToBody("mousemove", onMove);
             addEventToBody("mouseup", onStop);
             addEventToBody("touchstart", onMove);
+            addEventToBody("touchend", onStop);
             return () => {
                 removeEventFromBody("mousemove", onMove);
                 removeEventFromBody("mouseup", onStop);
                 removeEventFromBody("touchstart", onMove);
+                removeEventFromBody("touchend", onStop);
             };
         }
     };
