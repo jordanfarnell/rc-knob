@@ -689,8 +689,6 @@ var Knob = function Knob(_ref2) {
         return disabled ? undefined : onStart(e);
       },
       onTouchStart: function onTouchStart(e) {
-        e.stopPropagation();
-        e.preventDefault();
         if (!disabled) onStart(e);
       },
       width: size,

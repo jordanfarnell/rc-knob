@@ -66,8 +66,6 @@ export const Knob = ({
         <svg
             onMouseDown={(e) => (disabled ? undefined : onStart(e))}
             onTouchStart={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
                 if (!disabled) onStart(e);
             }}
             width={size}
