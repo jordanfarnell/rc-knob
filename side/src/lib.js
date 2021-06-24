@@ -218,6 +218,12 @@ var addEventToBody = function addEventToBody(name, fn) {
   return document.body.addEventListener(name, fn);
 };
 
+var addNonPassiveEventToBody = function addNonPassiveEventToBody(name, fn) {
+  return document.body.addEventListener(name, fn, {
+    passive: false
+  });
+};
+
 var removeEventFromBody = function removeEventFromBody(name, fn) {
   return document.body.removeEventListener(name, fn);
 };
@@ -242,24 +248,24 @@ var handleEventListener = function handleEventListener(_ref) {
       });
     };
 
-    var onTouchStart = function onTouchStart(_ref3) {
-      var changedTouches = _ref3.changedTouches;
+    var onTouchStart = function onTouchStart(e) {
+      e.preventDefault();
       dispatch({
         type: "MOVE",
-        pageX: changedTouches[0].pageX,
-        pageY: changedTouches[0].pageY
+        pageX: e.changedTouches[0].pageX,
+        pageY: e.changedTouches[0].pageY
       });
     };
 
     if (isActive) {
       addEventToBody("mousemove", onMove);
       addEventToBody("mouseup", onStop);
-      addEventToBody("touchmove", onTouchStart);
+      addNonPassiveEventToBody("touchmove", onTouchStart);
       addEventToBody("touchend", onStop);
       return function () {
         removeEventFromBody("mousemove", onMove);
         removeEventFromBody("mouseup", onStop);
-        removeEventFromBody("touchmove", onTouchStart);
+        addNonPassiveEventToBody("touchmove", onTouchStart);
         removeEventFromBody("touchend", onStop);
       };
     }

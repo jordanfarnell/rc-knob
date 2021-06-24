@@ -36,6 +36,8 @@ export const onScroll = (dispatch) => (e) => {
 };
 
 const addEventToBody = (name, fn) => document.body.addEventListener(name, fn);
+const addNonPassiveEventToBody = (name, fn) =>
+    document.body.addEventListener(name, fn, { passive: false });
 const removeEventFromBody = (name, fn) =>
     document.body.removeEventListener(name, fn);
 
@@ -45,22 +47,23 @@ export const handleEventListener =
         const onMove = ({ pageX, pageY }) =>
             dispatch({ pageX, pageY, type: "MOVE" });
         const onStop = () => dispatch({ type: "STOP" });
-        const onTouchStart = ({ changedTouches }) => {
+        const onTouchStart = (e) => {
+            e.preventDefault();
             dispatch({
                 type: "MOVE",
-                pageX: changedTouches[0].pageX,
-                pageY: changedTouches[0].pageY
+                pageX: e.changedTouches[0].pageX,
+                pageY: e.changedTouches[0].pageY
             });
         };
         if (isActive) {
             addEventToBody("mousemove", onMove);
             addEventToBody("mouseup", onStop);
-            addEventToBody("touchmove", onTouchStart);
+            addNonPassiveEventToBody("touchmove", onTouchStart);
             addEventToBody("touchend", onStop);
             return () => {
                 removeEventFromBody("mousemove", onMove);
                 removeEventFromBody("mouseup", onStop);
-                removeEventFromBody("touchmove", onTouchStart);
+                addNonPassiveEventToBody("touchmove", onTouchStart);
                 removeEventFromBody("touchend", onStop);
             };
         }
