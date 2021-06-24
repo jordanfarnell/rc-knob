@@ -48,7 +48,6 @@ export const handleEventListener =
             dispatch({ pageX, pageY, type: "MOVE" });
         const onStop = () => dispatch({ type: "STOP" });
         const onTouchStart = (e) => {
-            e.preventDefault();
             dispatch({
                 type: "MOVE",
                 pageX: e.changedTouches[0].pageX,

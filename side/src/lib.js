@@ -249,7 +249,6 @@ var handleEventListener = function handleEventListener(_ref) {
     };
 
     var onTouchStart = function onTouchStart(e) {
-      e.preventDefault();
       dispatch({
         type: "MOVE",
         pageX: e.changedTouches[0].pageX,
