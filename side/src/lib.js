@@ -243,7 +243,8 @@ var handleEventListener = function handleEventListener(_ref) {
     };
 
     var onStop = function onStop() {
-      return dispatch({
+      console.log("pogger");
+      dispatch({
         type: "STOP"
       });
     };

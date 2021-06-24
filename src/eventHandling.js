@@ -46,7 +46,10 @@ export const handleEventListener =
     () => {
         const onMove = ({ pageX, pageY }) =>
             dispatch({ pageX, pageY, type: "MOVE" });
-        const onStop = () => dispatch({ type: "STOP" });
+        const onStop = () => {
+            console.log("pogger");
+            dispatch({ type: "STOP" });
+        };
         const onTouchStart = (e) => {
             e.preventDefault();
             dispatch({
