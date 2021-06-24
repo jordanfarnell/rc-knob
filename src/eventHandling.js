@@ -48,12 +48,22 @@ export const handleEventListener =
         if (isActive) {
             addEventToBody("mousemove", onMove);
             addEventToBody("mouseup", onStop);
-            addEventToBody("touchstart", console.log);
+            addEventToBody("touchstart", (e) =>
+                onMove({
+                    pageX: e.changedTouches[0].pageX,
+                    pageY: e.changedTouches[0].pageY
+                })
+            );
             addEventToBody("touchend", onStop);
             return () => {
                 removeEventFromBody("mousemove", onMove);
                 removeEventFromBody("mouseup", onStop);
-                removeEventFromBody("touchstart", onMove);
+                removeEventFromBody("touchstart", (e) =>
+                    onMove({
+                        pageX: e.changedTouches[0].pageX,
+                        pageY: e.changedTouches[0].pageY
+                    })
+                );
                 removeEventFromBody("touchend", onStop);
             };
         }
